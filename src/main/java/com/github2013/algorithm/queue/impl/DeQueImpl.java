@@ -108,6 +108,7 @@ public class DeQueImpl implements IDeque {
      */
     public void removeLast() throws ExceptionEmpty {
 
+
     }
 
     /**
