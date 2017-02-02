@@ -1,19 +1,43 @@
 package com.github2013.algorithm.stack;
 
+import com.github2013.algorithm.ExceptionEmpty;
+
 /**
  * Created by drunk on 17-2-2.
+ * Author : DRUNK
+ * email :len1988.zhang@gmail.com
  */
 public interface IStack {
-    public int getSize(); //返回栈中元素的数目
+    /**
+     *  返回栈中元素的数目
+     * @return
+     */
+    public int getSize();
 
-    public boolean isEmpty(); //判断栈是否为空
+    /**
+     * 判断栈是否为空
+     * @return
+     */
+    public boolean isEmpty();
 
-    public Object top() throws ExceptionStackEmpty; //取栈顶元素，但不删除
+    /**
+     * 取栈顶元素，但不删除
+     * @return
+     * @throws ExceptionEmpty
+     */
+    public Object top() throws ExceptionEmpty;
 
-    public void push(Object ele); //入栈
+    /**
+     * 入栈
+     * @param ele
+     */
+    public void push(Object ele);
 
-    public Object pop() throws ExceptionStackEmpty; //出站
-
-    public Object[] reverse(Object[] objs) throws ExceptionStackEmpty; //栈反转
+    /**
+     * 出站
+     * @return
+     * @throws ExceptionEmpty
+     */
+    public Object pop() throws ExceptionEmpty;
 
 }
