@@ -257,6 +257,7 @@ public class ListByDLNodeImpl implements IList {
      * @return
      */
     public Iterator elements() {
+
         return null;
     }
 }
