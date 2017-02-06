@@ -1,6 +1,6 @@
 package com.github2013.algorithm.queue.impl;
 
-import com.github2013.algorithm.ExceptionEmpty;
+import com.github2013.algorithm.DSException;
 import com.github2013.algorithm.queue.IQueue;
 
 /**
@@ -47,11 +47,11 @@ public class QueueByArrayImpl implements IQueue {
      * 获取队首元素
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object front() throws ExceptionEmpty {
+    public Object front() throws DSException {
         if (isEmpty()) {
-            throw new ExceptionEmpty("队列为空！");
+            throw new DSException("队列为空！");
         }
         return Q[f];
     }
@@ -60,11 +60,11 @@ public class QueueByArrayImpl implements IQueue {
      * 入队
      *
      * @param obj
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public void enqueue(Object obj) throws ExceptionEmpty {
+    public void enqueue(Object obj) throws DSException {
         if (getSize() == capacity - 1) {
-            throw new ExceptionEmpty("队列溢出！！");
+            throw new DSException("队列溢出！！");
         }
         Q[r] = obj;
         r = (r + 1) % capacity;
@@ -74,12 +74,12 @@ public class QueueByArrayImpl implements IQueue {
      * 出队
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object dequeue() throws ExceptionEmpty {
+    public Object dequeue() throws DSException {
         Object elem;
         if (isEmpty()) {
-            throw new ExceptionEmpty("队列为空！");
+            throw new DSException("队列为空！");
         }
         elem = Q[f];
         Q[f] = null;

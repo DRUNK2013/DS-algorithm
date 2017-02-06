@@ -1,6 +1,6 @@
 package com.github2013.algorithm.queue;
 
-import com.github2013.algorithm.ExceptionEmpty;
+import com.github2013.algorithm.DSException;
 
 /**
  * Created by drunk on 17-2-2.
@@ -26,17 +26,17 @@ public interface IDeque {
      * 取首元素（但不删除）
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object first() throws ExceptionEmpty;
+    public Object first() throws DSException;
 
     /**
      * 取末元素（但不删除）
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object last() throws ExceptionEmpty;
+    public Object last() throws DSException;
 
     /**
      * 将新元素作为首元素插入
@@ -54,15 +54,15 @@ public interface IDeque {
 
     /**
      * 删除首元素
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public void removeFirst() throws ExceptionEmpty;
+    public void removeFirst() throws DSException;
 
     /**
      * 删除末元素
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public void removeLast() throws ExceptionEmpty;
+    public void removeLast() throws DSException;
 
     /**
      * 获取队列，并返回数组,不属于ADT

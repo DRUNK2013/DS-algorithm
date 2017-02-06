@@ -1,4 +1,4 @@
-package com.github2013.algorithm.linkedlist;
+package com.github2013.algorithm.link;
 
 /**
  * Created by drunk on 17-2-2.

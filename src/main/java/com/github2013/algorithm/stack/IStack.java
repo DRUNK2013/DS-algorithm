@@ -1,6 +1,6 @@
 package com.github2013.algorithm.stack;
 
-import com.github2013.algorithm.ExceptionEmpty;
+import com.github2013.algorithm.DSException;
 
 /**
  * Created by drunk on 17-2-2.
@@ -23,9 +23,9 @@ public interface IStack {
     /**
      * 取栈顶元素，但不删除
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object top() throws ExceptionEmpty;
+    public Object top() throws DSException;
 
     /**
      * 入栈
@@ -36,8 +36,8 @@ public interface IStack {
     /**
      * 出站
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object pop() throws ExceptionEmpty;
+    public Object pop() throws DSException;
 
 }

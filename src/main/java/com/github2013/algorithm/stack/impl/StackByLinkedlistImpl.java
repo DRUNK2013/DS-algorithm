@@ -6,8 +6,8 @@ package com.github2013.algorithm.stack.impl;
  * email :len1988.zhang@gmail.com
  */
 
-import com.github2013.algorithm.ExceptionEmpty;
-import com.github2013.algorithm.linkedlist.Node;
+import com.github2013.algorithm.DSException;
+import com.github2013.algorithm.link.Node;
 import com.github2013.algorithm.stack.IStack;
 
 /**
@@ -48,11 +48,11 @@ public class StackByLinkedlistImpl implements IStack {
      * 取栈顶元素，但不删除
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object top() throws ExceptionEmpty {
+    public Object top() throws DSException {
         if (isEmpty()) {
-            throw new ExceptionEmpty("栈为空！！");
+            throw new DSException("栈为空！！");
         }
         return top.getElement();
     }
@@ -72,11 +72,11 @@ public class StackByLinkedlistImpl implements IStack {
      * 出站
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object pop() throws ExceptionEmpty {
+    public Object pop() throws DSException {
         if (isEmpty()) {
-            throw new ExceptionEmpty("栈为空");
+            throw new DSException("栈为空");
         }
         Object temp = top.getElement();
         top = top.getNext(); // 把首节点，指向下一个节点
@@ -88,9 +88,9 @@ public class StackByLinkedlistImpl implements IStack {
      * 栈反转
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object[] reverse() throws ExceptionEmpty {
+    public Object[] reverse() throws DSException {
         StackByLinkedlistImpl temp = this;
         Object[] objects = new Object[getSize()];
         int size = getSize();

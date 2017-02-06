@@ -1,6 +1,6 @@
 package com.github2013.algorithm.stack.impl;
 
-import com.github2013.algorithm.ExceptionEmpty;
+import com.github2013.algorithm.DSException;
 import com.github2013.algorithm.stack.IStack;
 
 /**
@@ -31,26 +31,26 @@ public class StackByArrayImpl implements IStack {
         return this.top < 0;
     }
 
-    public Object top() throws ExceptionEmpty {
+    public Object top() throws DSException {
         if (isEmpty()) {
-            throw new ExceptionEmpty("栈为空");
+            throw new DSException("栈为空");
         }
         return S[top];
     }
 
-    public void push(Object obj) throws ExceptionEmpty {
+    public void push(Object obj) throws DSException {
         if (getSize() == capacity) {
-            throw new ExceptionEmpty("栈溢出！");
+            throw new DSException("栈溢出！");
         }
         top++;
         S[top] = obj;
 
     }
 
-    public Object pop() throws ExceptionEmpty {
+    public Object pop() throws DSException {
         Object elem;
         if (isEmpty()) {
-            throw new ExceptionEmpty("栈空！");
+            throw new DSException("栈空！");
         }
         elem = S[top];
         S[top] = null;
@@ -59,7 +59,7 @@ public class StackByArrayImpl implements IStack {
     }
 
     //把栈内的元素反转（不含null元素）
-    public Object[] reverse() throws ExceptionEmpty {
+    public Object[] reverse() throws DSException {
         int size = getSize();
         StackByArrayImpl stackByArrayImpl = new StackByArrayImpl(size);
         Object[] retObjs = new Object[size];

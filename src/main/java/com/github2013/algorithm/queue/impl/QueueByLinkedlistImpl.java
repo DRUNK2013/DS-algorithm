@@ -1,7 +1,7 @@
 package com.github2013.algorithm.queue.impl;
 
-import com.github2013.algorithm.ExceptionEmpty;
-import com.github2013.algorithm.linkedlist.Node;
+import com.github2013.algorithm.DSException;
+import com.github2013.algorithm.link.Node;
 import com.github2013.algorithm.queue.IQueue;
 
 /**
@@ -34,18 +34,18 @@ public class QueueByLinkedlistImpl implements IQueue {
      * @return
      */
     public boolean isEmpty() {
-        return (size == 0) ? true : false;
+        return (0 == size) ? true : false;
     }
 
     /**
      * 获取队首元素
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object front() throws ExceptionEmpty {
+    public Object front() throws DSException {
         if (isEmpty()) {
-            throw new ExceptionEmpty("队列为空！！");
+            throw new DSException("队列为空！！");
         }
         return head.getElement();
     }
@@ -54,9 +54,9 @@ public class QueueByLinkedlistImpl implements IQueue {
      * 入队
      *
      * @param obj
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public void enqueue(Object obj) throws ExceptionEmpty {
+    public void enqueue(Object obj) throws DSException {
         Node node = new Node();
         node.setElement(obj);
         node.setNext(null);
@@ -74,11 +74,11 @@ public class QueueByLinkedlistImpl implements IQueue {
      * 出队
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object dequeue() throws ExceptionEmpty {
+    public Object dequeue() throws DSException {
         if (0 == getSize()) {
-            throw new ExceptionEmpty("队列为空!!");
+            throw new DSException("队列为空!!");
         }
         Object obj = head.getElement();
         head = head.getNext();

@@ -5,8 +5,8 @@ package com.github2013.algorithm;
  * Author : DRUNK
  * email :len1988.zhang@gmail.com
  */
-public class ExceptionEmpty extends RuntimeException {
-    public ExceptionEmpty(String err){
+public class DSException extends RuntimeException {
+    public DSException(String err){
         super(err);
     }
 }

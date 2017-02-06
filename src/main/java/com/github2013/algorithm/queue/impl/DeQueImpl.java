@@ -1,7 +1,7 @@
 package com.github2013.algorithm.queue.impl;
 
-import com.github2013.algorithm.ExceptionEmpty;
-import com.github2013.algorithm.linkedlist.DLNode;
+import com.github2013.algorithm.DSException;
+import com.github2013.algorithm.link.DLNode;
 import com.github2013.algorithm.queue.IDeque;
 
 /**
@@ -44,11 +44,11 @@ public class DeQueImpl implements IDeque {
      * 取首元素（但不删除）
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object first() throws ExceptionEmpty {
+    public Object first() throws DSException {
         if (isEmpty()) {
-            throw new ExceptionEmpty("双端对垒为空！！");
+            throw new DSException("双端对垒为空！！");
         }
         return header.getNext().getElement();
     }
@@ -57,11 +57,11 @@ public class DeQueImpl implements IDeque {
      * 取末元素（但不删除）
      *
      * @return
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public Object last() throws ExceptionEmpty {
+    public Object last() throws DSException {
         if (isEmpty()) {
-            throw new ExceptionEmpty("双端对垒为空！！");
+            throw new DSException("双端对垒为空！！");
         }
         return trailer.getPrev().getElement();
     }
@@ -95,18 +95,18 @@ public class DeQueImpl implements IDeque {
     /**
      * 删除首元素
      *
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public void removeFirst() throws ExceptionEmpty {
+    public void removeFirst() throws DSException {
 
     }
 
     /**
      * 删除末元素
      *
-     * @throws ExceptionEmpty
+     * @throws DSException
      */
-    public void removeLast() throws ExceptionEmpty {
+    public void removeLast() throws DSException {
 
 
     }
