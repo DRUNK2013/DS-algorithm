@@ -11,6 +11,8 @@ import static org.junit.Assert.*;
  * email :len1988.zhang@gmail.com
  */
 public class ISequenceTest {
+    ISequence iSequence;
+
     @Before
     public void setUp() throws Exception {
 
