@@ -16,28 +16,28 @@ public interface IList {
      *
      * @return
      */
-    public int getSize();
+    int getSize();
 
     /**
      * 判断列表是否为空
      *
      * @return
      */
-    public boolean isEmpty();
+    boolean isEmpty();
 
     /**
      * 返回第一个元素
      *
      * @return
      */
-    public Position first() throws DSException;
+    Position first() throws DSException;
 
     /**
      * 返回最后一个元素
      *
      * @return
      */
-    public Position last() throws DSException;
+    Position last() throws DSException;
 
     /**
      * 返回紧跟给定位置之后的元素（的位置）
@@ -46,7 +46,7 @@ public interface IList {
      * @return
      * @throws DSException
      */
-    public Position getNext(Position p) throws DSException;
+    Position getNext(Position p) throws DSException;
 
     /**
      * 返回紧跟给定位置之钱的元素（的位置）
@@ -55,7 +55,7 @@ public interface IList {
      * @return
      * @throws DSException
      */
-    public Position getPrev(Position p) throws DSException;
+    Position getPrev(Position p) throws DSException;
 
     /**
      * 在列表中，在首位置插入元素
@@ -63,7 +63,7 @@ public interface IList {
      * @param e
      * @return
      */
-    public Position insertFirst(Object e) throws DSException;
+    Position insertFirst(Object e) throws DSException;
 
     /**
      * 在列表中，在末位置插入元素
@@ -71,7 +71,7 @@ public interface IList {
      * @param e
      * @return
      */
-    public Position insertLast(Object e) throws DSException;
+    Position insertLast(Object e) throws DSException;
 
     /**
      * 在跟定的元素元素位置，后面插入新元素e
@@ -81,7 +81,7 @@ public interface IList {
      * @return
      * @throws DSException
      */
-    public Position insertAfter(Position p, Object e) throws DSException;
+    Position insertAfter(Position p, Object e) throws DSException;
 
     /**
      * 在给定元素的位置，之前插入新元素e
@@ -91,7 +91,7 @@ public interface IList {
      * @return
      * @throws DSException
      */
-    public Position insertBefore(Position p, Object e) throws DSException;
+    Position insertBefore(Position p, Object e) throws DSException;
 
     /**
      * 移除位置p的元素
@@ -100,21 +100,21 @@ public interface IList {
      * @return
      * @throws DSException
      */
-    public Object remove(Position p) throws DSException;
+    Object remove(Position p) throws DSException;
 
     /**
      * 移除首元素
      *
      * @return
      */
-    public Object removeFirst() throws DSException;
+    Object removeFirst() throws DSException;
 
     /**
      * 移除末元素
      *
      * @return
      */
-    public Object removeLast() throws DSException;
+    Object removeLast() throws DSException;
 
     /**
      * 在给定位置，替换新元素
@@ -124,19 +124,19 @@ public interface IList {
      * @return
      * @throws DSException
      */
-    public Object replace(Position p, Object e) throws DSException;
+    Object replace(Position p, Object e) throws DSException;
 
     /**
      * 迭代出位置的集合
      *
      * @return
      */
-    public Iterator positions();
+    Iterator positions();
 
     /**
      * 元素值的迭代
      *
      * @return
      */
-    public Iterator elements();
+    Iterator elements();
 }

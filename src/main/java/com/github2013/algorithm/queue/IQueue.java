@@ -13,14 +13,14 @@ public interface IQueue {
      *
      * @return
      */
-    public int getSize();
+    int getSize();
 
     /**
      * 判断队列是否为空
      *
      * @return
      */
-    public boolean isEmpty();
+    boolean isEmpty();
 
     /**
      * 获取队首元素
@@ -28,7 +28,7 @@ public interface IQueue {
      * @return
      * @throws DSException
      */
-    public Object front() throws DSException;
+    Object front() throws DSException;
 
     /**
      * 入队
@@ -36,7 +36,7 @@ public interface IQueue {
      * @param obj
      * @throws DSException
      */
-    public void enqueue(Object obj) throws DSException;
+    void enqueue(Object obj) throws DSException;
 
     /**
      * 出队
@@ -44,13 +44,13 @@ public interface IQueue {
      * @return
      * @throws DSException
      */
-    public Object dequeue() throws DSException;
+    Object dequeue() throws DSException;
 
     /**
      * 获取队列，并返回数组,不属于ADT
      *
      * @return
      */
-    public Object[] getQueue();
+    Object[] getQueue();
 
 }

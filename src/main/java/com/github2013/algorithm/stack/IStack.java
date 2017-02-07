@@ -12,32 +12,32 @@ public interface IStack {
      *  返回栈中元素的数目
      * @return
      */
-    public int getSize();
+     int getSize();
 
     /**
      * 判断栈是否为空
      * @return
      */
-    public boolean isEmpty();
+     boolean isEmpty();
 
     /**
      * 取栈顶元素，但不删除
      * @return
      * @throws DSException
      */
-    public Object top() throws DSException;
+     Object top() throws DSException;
 
     /**
      * 入栈
      * @param ele
      */
-    public void push(Object ele);
+     void push(Object ele);
 
     /**
      * 出站
      * @return
      * @throws DSException
      */
-    public Object pop() throws DSException;
+     Object pop() throws DSException;
 
 }

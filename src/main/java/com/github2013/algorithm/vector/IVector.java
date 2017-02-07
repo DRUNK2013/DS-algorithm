@@ -14,14 +14,14 @@ public interface IVector {
      *
      * @return
      */
-    public int getSize();
+    int getSize();
 
     /**
      * 判断向量是否为空
      *
      * @return
      */
-    public boolean isEmpty();
+    boolean isEmpty();
 
     /**
      * 取秩为r的元素
@@ -30,33 +30,36 @@ public interface IVector {
      * @return
      * @throws DSException
      */
-    public Object getAtRank(int r) throws DSException;
+    Object getAtRank(int r) throws DSException;
 
     /**
      * 将秩为r的元素替换为obj
+     *
      * @param r
      * @param obj
      * @return
      * @throws DSException
      */
-    public Object replaceAtRank(int r, Object obj) throws DSException;
+    Object replaceAtRank(int r, Object obj) throws DSException;
 
     /**
      * 插入obj，作为秩为r的元素，返回该元素
+     *
      * @param r
      * @param obj
      * @return
      * @throws DSException
      */
-    public Object insertAtRank(int r,Object obj) throws DSException;
+    Object insertAtRank(int r, Object obj) throws DSException;
 
     /**
      * 删除秩为r的元素
+     *
      * @param r
      * @return
      * @throws DSException
      */
-    public Object removeAtRank(int r) throws DSException;
+    Object removeAtRank(int r) throws DSException;
 
 
 }
