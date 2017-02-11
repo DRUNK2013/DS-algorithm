@@ -33,7 +33,7 @@ public class BinTreeNodeImpl implements IBinTree {
      * @return
      */
     public boolean isEmpty() {
-        return false;
+        return (null == element);
     }
 
     /**
@@ -42,7 +42,7 @@ public class BinTreeNodeImpl implements IBinTree {
      * @return
      */
     public int getSize() {
-        return 0;
+        return size;
     }
 
     /**
