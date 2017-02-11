@@ -10,6 +10,14 @@ import com.github2013.algorithm.tree.IBinTree;
  * email :len1988.zhang@gmail.com
  */
 public class BinTreeNodeImpl implements IBinTree {
+    protected Object element;//该节点存放的对象
+    protected BinTreePosition parent;//父亲
+    protected BinTreePosition lChild;//左孩子
+    protected BinTreePosition rChild;//右孩子
+    protected int size; //后代数目
+    protected int height; //高度
+    protected int depth; //深度
+
     /**
      * 返回根节点
      *
