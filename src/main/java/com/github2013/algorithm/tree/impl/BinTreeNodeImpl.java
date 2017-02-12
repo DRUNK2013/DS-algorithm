@@ -267,7 +267,7 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public BinTreePosition getPrev() {
-        
+
         return null;
     }
 
