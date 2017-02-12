@@ -2,6 +2,7 @@ package com.github2013.algorithm.tree;
 
 import com.github2013.algorithm.iterator.IIterator;
 import com.github2013.algorithm.link.Position;
+import com.github2013.algorithm.tree.impl.BinTreeNodeImpl;
 
 /**
  * Created by drunk on 17-2-11.
@@ -78,13 +79,18 @@ public interface BinTreePosition extends Position {
     /**
      * 设置当前节点的右孩子(注意:this.rChild和c.parent都不一定为空)
      */
-    void setRChild();
+    void setRChild(BinTreeNodeImpl rChild);
 
     /**
      * 获取当前节点后代元素的数目
      * @return
      */
     int getSize();
+
+    /**
+     * 在孩子发生变化后,更新当前节点及其祖先的规模
+     */
+    void updateSize();
 
     /**
      * 返回当前节点的高度
