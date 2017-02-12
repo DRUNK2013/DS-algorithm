@@ -7,6 +7,10 @@ import com.github2013.algorithm.tree.ITree;
  * Author : DRUNK
  * email :len1988.zhang@gmail.com
  */
+
+/**
+ * m叉树树
+ */
 public class TreeLinkedList implements ITree {
     private Object element;//树根节点
     private TreeLinkedList parent, firstChild, nextSibing;//父亲,长子及最大的弟弟
