@@ -1,10 +1,9 @@
 #DS-algorithm 数据结构与算法练习（java && python）
 
-参考书籍:http://www.chinastor.org/upload/2013-12/13121914552984.pdf
-
-        https://dsa.cs.tsinghua.edu.cn/~deng/ds/dsaj/dsaj.pdf
-
-        https://github.com/zzhi/Java_Books
+参考电子书籍:
+1. http://www.chinastor.org/upload/2013-12/13121914552984.pdf
+2. https://dsa.cs.tsinghua.edu.cn/~deng/ds/dsaj/dsaj.pdf
+3. https://github.com/zzhi/Java_Books
 
 可视化动画演示:http://coolshell.cn/articles/4671.html
 
