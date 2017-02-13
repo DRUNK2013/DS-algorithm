@@ -1,6 +1,8 @@
 package com.github2013.algorithm.tree.impl;
 
+import com.github2013.algorithm.List.IList;
 import com.github2013.algorithm.iterator.IIterator;
+import com.github2013.algorithm.queue.impl.QueueByLinkedlistImpl;
 import com.github2013.algorithm.tree.BinTreePosition;
 import com.github2013.algorithm.tree.IBinTree;
 
@@ -267,8 +269,22 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public BinTreePosition getPrev() {
+        //如左子树非空,则其中的最大者即为当前节点的直接前驱
+        if (hasLChild()) {
+            return findMaxDescendant(getLChild());
+        }
+        //至此当前节点没有左孩子
+        //若当前节点是有孩子,则父亲即为其直接前驱
+        if (isRChild()) {
+            return getPrev();
+        }
+        //至此当前节点没有左孩子,而且此节点是左孩子
 
-        return null;
+        BinTreePosition v = this;//从当前节点出发
+        while (v.isLChild()) {
+            v = v.getParent();//沿着左孩子链一直上升
+        }
+        return v.getParent();
     }
 
     /**
@@ -277,7 +293,22 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public BinTreePosition getSucc() {
-        return null;
+        //若右子树非空,则其中的最小者即为当前节点的直接后继
+        if (hasRChild()) {
+            return findMinDescendant(getRChild());
+        }
+        //至此,当前节点没有右侧孩子
+        //若当前节点是左侧孩子,则父亲即为其直接后继
+        if (isLChild()) {
+            return getParent();
+        }
+        //至此,当前节点没有右孩子,而且此节点是右孩子
+        BinTreePosition v = this;
+        while (v.isRChild()) {
+            v = v.getParent();
+        }
+        //至此,v或者没有父亲,或者父亲的左侧孩子
+        return v.getParent();
     }
 
     /**
@@ -286,7 +317,18 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public BinTreePosition secede() {
-        return null;
+        if(null !=parent){
+            if(isLChild()){
+                parent.setLChild(null);
+            }else {
+                parent.setRChild(null);
+            }
+            parent.updateSize();
+            parent.updateHeight();
+            parent = null;
+            updateDepth();
+        }
+        return this;
     }
 
     /**
@@ -296,6 +338,7 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public BinTreePosition attachL(BinTreePosition c) {
+        
         return null;
     }
 
@@ -345,5 +388,101 @@ public class BinTreeNodeImpl implements BinTreePosition {
         return null;
     }
 
+    /*****************辅助方法************************/
+    /**
+     * 在v的后代中,找出最小者
+     *
+     * @param v
+     * @return
+     */
+    protected static BinTreePosition findMinDescendant(BinTreePosition v) {
+        if (null != v) {//从v出发,沿左孩子链一直下降
+            while (v.hasLChild()) {
+                v = v.getLChild();
+            }
+        }//至此,v为空,或者没有左侧孩子
+        return v;
+    }
 
+
+    /**
+     * 在v的后代中,找出最大者
+     *
+     * @param v
+     * @return
+     */
+    protected static BinTreePosition findMaxDescendant(BinTreePosition v) {
+        if (null != v) {//从v出发,沿着右侧孩子链一直下降
+            while (v.hasRChild()) {
+                v = v.getRChild();
+            }
+        }//至此,v为空,或者没有右侧孩子
+        return v;
+    }
+
+    /**
+     * 前序遍历,以v给根的(子)树
+     *
+     * @param list
+     * @param v
+     */
+    protected static void preorder(IList list, BinTreePosition v) {
+        if (null == v) {
+            return;//递归基,空树
+        }
+        list.insertLast(v);//访问v
+        preorder(list, v.getLChild());//遍历左子树
+        preorder(list, v.getRChild());//遍历右子树
+    }
+
+    /**
+     * 中序遍历,以v为根的(子)树
+     *
+     * @param list
+     * @param v
+     */
+    protected static void inorder(IList list, BinTreePosition v) {
+        if (null == v) {
+            return; //递归基:空树
+        }
+        inorder(list, v.getLChild());
+        list.insertLast(v);
+        inorder(list, v.getRChild());
+    }
+
+    /***
+     * 后续遍历,以v为根的(子)树
+     * @param list
+     * @param v
+     */
+    protected static void postorder(IList list, BinTreePosition v) {
+        if (null == v) {
+            return;//递归基:空树
+        }
+        postorder(list, v.getLChild());//遍历左子树
+        postorder(list, v.getRChild());//遍历右子树
+        list.insertLast(v);//访问v
+    }
+
+    /**
+     * 层次遍历,以v为根节点的(子)树
+     *
+     * @param list
+     * @param v
+     */
+    protected static void leverorder(IList list, BinTreePosition v) {
+        QueueByLinkedlistImpl Q = new QueueByLinkedlistImpl();//控队
+        Q.enqueue(v);//根节点入队
+        while (!Q.isEmpty()) {
+            BinTreePosition u = (BinTreePosition) Q.dequeue(); //出队
+            list.insertLast(u);//访问v
+            if (u.hasLChild()) {
+                Q.enqueue(u.getLChild());
+            }
+            if (u.hasRChild()) {
+                Q.enqueue(u.getRChild());
+            }
+        }
+
+    }
 }
