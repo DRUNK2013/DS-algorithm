@@ -1,6 +1,7 @@
 package com.github2013.algorithm.tree.impl;
 
 import com.github2013.algorithm.List.IList;
+import com.github2013.algorithm.List.impl.ListByDLNodeImpl;
 import com.github2013.algorithm.iterator.IIterator;
 import com.github2013.algorithm.queue.impl.QueueByLinkedlistImpl;
 import com.github2013.algorithm.tree.BinTreePosition;
@@ -366,9 +367,9 @@ public class BinTreeNodeImpl implements BinTreePosition {
             getRChild().secede();//摘除当前节点原先的右侧孩
         }
 
-        if(null != c){
+        if (null != c) {
             c.secede();//c脱离原父亲
-            rChild=c;
+            rChild = c;
             c.setParent(this);//确立新的父子关系
             updateSize();//更新当前节点及其祖先的规模
             updateHeight();//更新当前节点及其祖先的高度
@@ -384,7 +385,9 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public IIterator elementsPreorder() {
-        return null;
+        IList list = new ListByDLNodeImpl();
+        preorder(list, this);
+        return (IIterator) list.elements();
     }
 
     /**
@@ -393,7 +396,9 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public IIterator elementsInorder() {
-        return null;
+        IList list = new ListByDLNodeImpl();
+        inorder(list, this);
+        return (IIterator) list.elements();
     }
 
     /**
@@ -402,7 +407,9 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public IIterator elementsPostorder() {
-        return null;
+        IList list = new ListByDLNodeImpl();
+        postorder(list, this);
+        return (IIterator) list.elements();
     }
 
     /**
@@ -411,7 +418,9 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public IIterator elementsLevelorder() {
-        return null;
+        IList list = new ListByDLNodeImpl();
+        leverorder(list, this);
+        return (IIterator) list.elements();
     }
 
     /*****************辅助方法************************/
