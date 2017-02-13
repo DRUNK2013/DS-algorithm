@@ -317,10 +317,10 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public BinTreePosition secede() {
-        if(null !=parent){
-            if(isLChild()){
+        if (null != parent) {
+            if (isLChild()) {
                 parent.setLChild(null);
-            }else {
+            } else {
                 parent.setRChild(null);
             }
             parent.updateSize();
@@ -338,8 +338,21 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public BinTreePosition attachL(BinTreePosition c) {
-        
-        return null;
+        if (hasLChild()) {
+            getLChild().secede();
+        }
+
+        if (null != c) {
+            c.secede();//c脱离原父亲
+            lChild = c;
+            c.setParent(this);//建立新的父子关系
+            updateSize();//跟新当前节点及其祖先的规模
+            updateHeight();//跟新当前节点及其祖先的高度
+
+            c.updateDepth();//跟新c及其后代节点的深度
+        }
+
+        return this;
     }
 
     /**
@@ -349,7 +362,20 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public BinTreePosition attachR(BinTreePosition c) {
-        return null;
+        if (hasRChild()) {
+            getRChild().secede();//摘除当前节点原先的右侧孩
+        }
+
+        if(null != c){
+            c.secede();//c脱离原父亲
+            rChild=c;
+            c.setParent(this);//确立新的父子关系
+            updateSize();//更新当前节点及其祖先的规模
+            updateHeight();//更新当前节点及其祖先的高度
+            c.updateDepth();///更新c及其后代节点的深度
+        }
+
+        return this;
     }
 
     /**
