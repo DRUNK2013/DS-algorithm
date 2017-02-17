@@ -28,6 +28,7 @@ public class ItoratorTree implements IIterator {
         if (null == T) {
             return; //递归基
         }
+
         list.insertLast(T);
 
         TreeLinkedList subTree = T.getFirstChild();//从当前节点的长子开始
