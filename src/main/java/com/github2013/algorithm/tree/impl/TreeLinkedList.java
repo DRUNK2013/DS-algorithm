@@ -15,6 +15,7 @@ public class TreeLinkedList implements ITree {
     private Object element;//树根节点
     private TreeLinkedList parent, firstChild, nextSibing;//父亲,长子及最大的弟弟
 
+
     public TreeLinkedList() {
         this(null, null, null, null);
     }
