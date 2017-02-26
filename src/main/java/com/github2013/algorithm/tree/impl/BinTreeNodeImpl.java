@@ -151,10 +151,10 @@ public class BinTreeNodeImpl implements BinTreePosition {
      * @return
      */
     public BinTreePosition getRoot() {
-				BinTreePosition current = getParent();
-				while(null != current())
-						current = current.getParent();
-				}
+        BinTreePosition current = getParent();
+        while (null != getParent()) {
+            current = current.getParent();
+        }
         return current;
     }
 
