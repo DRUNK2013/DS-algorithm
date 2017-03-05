@@ -1,5 +1,6 @@
 import com.github2013.algorithm.tree;
 
+//http://blog.csdn.net/yhhazr/article/details/7944089
 //构建一个二叉树,普通二叉树，不是平衡二叉树
 public class BinaryTree{
 
