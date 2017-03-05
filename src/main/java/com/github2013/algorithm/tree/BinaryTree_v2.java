@@ -1,5 +1,6 @@
 package com.github2013.algorithm.tree;
 
+//http://www.cnblogs.com/lzq198754/p/5857597.html
 //定义数据结构节点
 public class TreeNode{
     //左节点
@@ -66,5 +67,11 @@ public class TreeNode{
 
 public class BinaryTree_v2{
 
+    //根节点
+    private TreeNode root;
+    
+    public TreeNode getRoot(){
+        return this.root;
+    }
 
 }
