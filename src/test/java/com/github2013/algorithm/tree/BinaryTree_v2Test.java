@@ -26,7 +26,8 @@ public class BinaryTree_v2Test {
 
         assertEquals(tree.getRoot().getValue().toString(), "10");
         TreeNode node = tree.find(13);
-        assertEquals(13,node.getValue());
+        assertEquals(13, node.getValue());
+        tree.inOrder(tree.getRoot());
     }
 
 }
