@@ -92,7 +92,7 @@ public class BinaryTree_v2 {
             TreeNode parentNode;
             while (true) {
                 parentNode = currentNode;
-                if (Integer.valueOf(node.getValue().toString()) > Integer.valueOf(currentNode.getValue().toString())) {
+                if (Integer.valueOf(String.valueOf(node.getValue())) > Integer.valueOf(String.valueOf(currentNode.getValue()))) {
                     currentNode = currentNode.getRightNode();
                     if (null == currentNode) {
                         parentNode.setRihtNode(node);
@@ -113,13 +113,13 @@ public class BinaryTree_v2 {
     public TreeNode find(int key) {
         TreeNode currentNode = root;
         if (null != currentNode) {
-            while (Integer.valueOf(currentNode.getValue().toString()) != key) {
-                if (Integer.valueOf(currentNode.getValue().toString()) > key) {
+            while (Integer.valueOf(String.valueOf(currentNode.getValue())) != key) {
+                if (Integer.valueOf(String.valueOf(currentNode.getValue())) > key) {
                     currentNode = currentNode.getLeftNode();
                 } else {
                     currentNode = currentNode.getRightNode();
                 }
-                if (currentNode == null) {
+                if (null == currentNode) {
                     return null;
                 }
             }
