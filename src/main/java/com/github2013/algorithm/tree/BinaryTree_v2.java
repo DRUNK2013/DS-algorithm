@@ -1,5 +1,7 @@
 package com.github2013.algorithm.tree;
 
+import sun.reflect.generics.tree.Tree;
+
 //http://www.cnblogs.com/lzq198754/p/5857597.html
 //定义数据结构节点
 class TreeNode {
@@ -113,8 +115,8 @@ public class BinaryTree_v2 {
     public TreeNode find(int key) {
         TreeNode currentNode = root;
         if (null != currentNode) {
-            while (Integer.valueOf(String.valueOf(currentNode.getValue())) != key) {
-                if (Integer.valueOf(String.valueOf(currentNode.getValue())) > key) {
+            while (convertValue(currentNode.getValue()) != key) {
+                if (convertValue(currentNode.getValue()) > key) {
                     currentNode = currentNode.getLeftNode();
                 } else {
                     currentNode = currentNode.getRightNode();
@@ -127,6 +129,30 @@ public class BinaryTree_v2 {
         } else {
             return null;
         }
+    }
+
+    //查找，递归查找
+    public TreeNode find2(int key, TreeNode currentNode) {
+        if (null == currentNode) {
+            return null;
+        }
+        if (key == convertValue(currentNode.getValue())) {
+            return currentNode;
+        } else {
+            if ((null != currentNode.getLeftNode()) && key < convertValue(currentNode.getValue())) {
+                return find2(key, currentNode.getLeftNode());
+            } else if (null != currentNode.getRightNode() && key > convertValue(currentNode.getValue())) {
+                return find2(key, currentNode.getRightNode());
+            } else {
+                return null;
+            }
+        }
+
+    }
+
+    private int convertValue(Object obj) {
+        return Integer.valueOf(String.valueOf(obj));
+
     }
 
     //中序遍历
