@@ -30,14 +30,14 @@ public class AVLTree<E> {
     }
 
     //定义平衡二叉树的节点信息
-    private class TreeNode<E> {
+    private class Node<E> {
         private E element;
-        private TreeNode<E> parent;
-        private TreeNode<E> left;
-        private TreeNode<E> right;
+        private Node<E> parent;
+        private Node<E> left;
+        private Node<E> right;
         private int balance = Balance.EH.getValue();
 
-        public TreeNode(E element, TreeNode<E> parent) {
+        public Node(E element, Node<E> parent) {
             this.element = element;
             this.parent = parent;
         }
@@ -50,27 +50,27 @@ public class AVLTree<E> {
             this.element = element;
         }
 
-        public TreeNode<E> getParent() {
+        public Node<E> getParent() {
             return parent;
         }
 
-        public void setParent(TreeNode<E> parent) {
+        public void setParent(Node<E> parent) {
             this.parent = parent;
         }
 
-        public TreeNode<E> getLeft() {
+        public Node<E> getLeft() {
             return left;
         }
 
-        public void setLeft(TreeNode<E> left) {
+        public void setLeft(Node<E> left) {
             this.left = left;
         }
 
-        public TreeNode<E> getRight() {
+        public Node<E> getRight() {
             return right;
         }
 
-        public void setRight(TreeNode<E> right) {
+        public void setRight(Node<E> right) {
             this.right = right;
         }
 
@@ -89,7 +89,7 @@ public class AVLTree<E> {
     }
 
     //根节点
-    private TreeNode<E> root = null;
+    private Node<E> root = null;
 
     //树中元素个数
     private int size;
@@ -100,5 +100,13 @@ public class AVLTree<E> {
 
     public int getSize() {
         return size;
+    }
+
+    /**
+     * 左旋转
+     * @param p
+     */
+    public void rotateLeft(Node<E> p){
+
     }
 }
