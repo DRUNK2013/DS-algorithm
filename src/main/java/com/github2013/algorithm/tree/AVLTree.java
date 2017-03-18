@@ -239,6 +239,11 @@ public class AVLTree<E> {
         return true;
     }
 
+    /**
+     * 对当前节点的树进行平衡.
+     * 若平衡因子为2,则说明左侧子树高,需要左侧平衡
+     * @param p
+     */
     private void fixAfterInsertion(Node<E> p){
         if(p.balance==2){
             leftBalance(p);
