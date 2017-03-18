@@ -175,10 +175,83 @@ public class AVLTree<E> {
 
     /**
      * 添加数据节点
+     * 基本原理为:
+     * 1.根据二叉树的特性,从根节点开始向下查找比较,查找出数插入的位置.
+     * 2.节点插入后,需要d对插入的节点自下而上回溯,需改其父节点的平衡因子.
+     *   如此节点的值小于父节点,说明插入的节点是在左树,则需要把父节点的平衡因子+1.
+     *   否则是右侧节点(说明:平衡二叉树,没有相等值),则需要把父节点的平衡因子-1操作.
+     *   若平衡因子为0,则终止回溯,说明子树平衡.
+     *   若此节点的平衡因子为2或-2,则需要调整树的结构.
      * @param element
      * @return
      */
     public boolean add(E element) {
+        Node<E> t = this.root;
+        if (null == t) {
+            this.root = new Node<E>(element, null);
+            this.size = 1;
+            return true;
+        }
+
+        int cmp;//元素比较的临时结果
+        Node<E> parent;
+        Comparable<? super E> e = (Comparable<? super E>) element;
+
+        //从根节点向下搜索,找到插入的位置
+        do {
+            parent = t;
+            cmp = e.compareTo(t.element);
+            if (cmp < 0) {
+                t = t.left;
+            } else if (cmp > 0) {
+                t = t.right;
+            } else {
+                return false; //元素不能相同
+            }
+        } while (null != t);
+
+        Node<E> child = new Node<E>(element, parent);
+        if (cmp < 0) {
+            parent.left = child;
+        } else {
+            parent.right = child;
+        }
+
+        //从当前节点向上回溯,查找最近不平衡的节点
+        while (null != parent) {
+            cmp = e.compareTo(parent.element);
+            if (cmp < 0) {//插入左节点中
+                parent.balance++;
+            } else { //插入右节点中
+                parent.balance--;
+            }
+            if (parent.balance == 0) { //整课树已平衡,退出
+                break;
+            }
+
+            if (Math.abs(parent.balance) == 2) {//找到最小不平衡子树根节点
+                fixAfterInsertion(parent);
+                break;
+            }
+            parent = parent.parent;
+        }
+        size++;
+        return true;
+    }
+
+    private void fixAfterInsertion(Node<E> p){
+        if(p.balance==2){
+            leftBalance(p);
+        }
+        if(p.balance==-2){
+            rightBalance(p);
+        }
+    }
+    private boolean leftBalance(Node<E> p){
+        return true;
+    }
+
+    private boolean rightBalance(Node<E> p){
         return true;
     }
 }
