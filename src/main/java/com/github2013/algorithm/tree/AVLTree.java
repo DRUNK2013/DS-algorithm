@@ -178,10 +178,11 @@ public class AVLTree<E> {
      * 基本原理为:
      * 1.根据二叉树的特性,从根节点开始向下查找比较,查找出数插入的位置.
      * 2.节点插入后,需要d对插入的节点自下而上回溯,需改其父节点的平衡因子.
-     *   如此节点的值小于父节点,说明插入的节点是在左树,则需要把父节点的平衡因子+1.
-     *   否则是右侧节点(说明:平衡二叉树,没有相等值),则需要把父节点的平衡因子-1操作.
-     *   若平衡因子为0,则终止回溯,说明子树平衡.
-     *   若此节点的平衡因子为2或-2,则需要调整树的结构.
+     * 如此节点的值小于父节点,说明插入的节点是在左树,则需要把父节点的平衡因子+1.
+     * 否则是右侧节点(说明:平衡二叉树,没有相等值),则需要把父节点的平衡因子-1操作.
+     * 若平衡因子为0,则终止回溯,说明子树平衡.
+     * 若此节点的平衡因子为2或-2,则需要调整树的结构.
+     *
      * @param element
      * @return
      */
@@ -241,22 +242,106 @@ public class AVLTree<E> {
 
     /**
      * 对当前节点的树进行平衡.
-     * 若平衡因子为2,则说明左侧子树高,需要左侧平衡
+     * 1.若左子树的根(以下简称R)平衡因子为2,则说明左侧子树高,需要左侧平衡
+     * 如果R的左子树的根节点的BF为1时,做右旋
+     * 如果R的右子树的根节点的BF为-1时,先左旋再右旋
+     * <p>
+     * 2.R为-2时,即右子树高于左子树.
+     * 如果R的右子树的根节点为1时,先右旋再左旋
+     * 如果R的右子树的根节点为-1时,做左旋.
+     *
      * @param p
      */
-    private void fixAfterInsertion(Node<E> p){
-        if(p.balance==2){
+    private void fixAfterInsertion(Node<E> p) {
+        if (p.balance == 2) {
             leftBalance(p);
         }
-        if(p.balance==-2){
+        if (p.balance == -2) {
             rightBalance(p);
         }
     }
-    private boolean leftBalance(Node<E> p){
-        return true;
+
+    /**
+     * 做左平衡处理
+     * | 平衡因子的调整如图,情况1:(rd的BF为0)
+     * |        t                       rd
+     * |      /   \                   /    \
+     * |     l    tr   左旋后右旋     l       t
+     * |   /   \       ------->    /  \    /  \
+     * | ll    rd                ll   rdl rdr  tr
+     * |      /   \
+     * |    rdl  rdr
+     * |
+     * |
+     * |
+     * |  情况2:(rd的BF为1)
+     * |        t                       rd
+     * |      /   \                   /    \
+     * |     l    tr   左旋后右旋     l       t
+     * |   /   \       ------->    /  \      \
+     * | ll    rd                ll   rdl     tr
+     * |      /
+     * |    rdl
+     * |
+     * |
+     * |
+     * |  情况3:(rd的BF为-1)
+     * |        t                       rd
+     * |      /   \                   /    \
+     * |     l    tr   左旋后右旋     l      t
+     * |   /   \       ------->    /      /  \
+     * | ll    rd                 ll     rdr  tr
+     * |          \
+     * |         rdr
+     * |
+     * |
+     * |  情况4:(L等高)
+     * |       t                         l
+     * |      /       右旋处理           /  \
+     * |     l        ------>          ll  t
+     * |   /   \                          /
+     * |  ll   rd                       rd
+     *
+     * @param p
+     * @return
+     */
+    private boolean leftBalance(Node<E> p) {
+        boolean heightLower = true;
+        Node<E> l = p.left;
+        switch (l.balance) {
+            case 1:
+                p.balance = l.balance = Balance.EH.getValue();
+                rotateRight(p);
+                break;
+            case -1:
+                Node<E> rd = l.right;
+                switch (rd.balance) {
+                    case 1:
+                        p.balance = -1;
+                        l.balance = 0;
+                        break;
+                    case 0:
+                        p.balance = l.balance = 0;
+                    case -1:
+                        p.balance = 0;
+                        l.balance = 1;
+                        break;
+                }
+                rd.balance = 0;
+                rotateLeft(p.left);
+                rotateRight(p);
+                break;
+            case 0:
+                l.balance = -1;
+                p.balance = 1;
+                rotateRight(p);
+                heightLower = false;
+                break;
+        }
+        return heightLower;
     }
 
-    private boolean rightBalance(Node<E> p){
+    private boolean rightBalance(Node<E> p) {
         return true;
     }
 }
